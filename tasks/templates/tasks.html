@@ -11,8 +11,9 @@
             <h2>Actividad: {{task.title}}</h2>
             <p>Descripción: {{task.description}}</p>
             <p>Realizada por: {{task.user.username}}</p>
+            <p>Fecha Inicio: {{ task.created|date }}</p>
             {% if task.datecompleted %}
-            <p>Completada el: {{task.datecompleted}}</p>
+            <p>Fecha finalización: {{ task.datecompleted|date }}</p>
             {% endif %}
         </a>
     </li>
