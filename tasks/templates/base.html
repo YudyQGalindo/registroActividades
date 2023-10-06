@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividades Practicantes</title>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="/">Inicio</a>
+            </li>
+            <li>
+                <a href="/tasks">Tareas</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li>
+                <a href="/logout">Cerrar sesión</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="/signup">Registros</a>
+            </li>
+            <li>
+                <a href="/signin">Iniciar Sesión</a>
+            </li>
+            {% endif %}
+
+        </ul>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+</html>
