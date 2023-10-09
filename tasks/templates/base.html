@@ -17,21 +17,24 @@
             {% if user.is_authenticated %}
 
             <li>
-                <a href="/tasks">Actividades</a>
+                <a href="{% url 'tasks' %}">Actividades Pendientes</a>
             </li>
             <li>
-                <a href="/tasks/create/">Crear Actividad</a>
+                <a href="{% url 'tasks_completed' %}">Actividades Completadas</a>
             </li>
             <li>
-                <a href="/logout">Cerrar sesión</a>
+                <a href="{% url 'create_task' %}">Crear Actividad</a>
+            </li>
+            <li>
+                <a href="{% url 'logout' %}">Cerrar sesión</a>
             </li>
 
             {% else %}
             <li>
-                <a href="/signup">Registros</a>
+                <a href="{% url 'signup' %}">Registros</a>
             </li>
             <li>
-                <a href="/signin">Iniciar Sesión</a>
+                <a href="{% url 'signin' %}">Iniciar Sesión</a>
             </li>
             {% endif %}
 
