@@ -13,7 +13,13 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     return render(request, 'home.html')
 
+# Mortrar la página principal del Admin
+@login_required
+def inicioAdmin(request):
+    return render(request, 'inicioAdmin.html')
+
 # Registrar un nuevo usuario
+@login_required
 def signup(request):
     if request.method == 'GET':
         return render(request, 'signup.html', {
@@ -28,16 +34,15 @@ def signup(request):
                     user = User.objects.create_user(
                         username=request.POST['username'], password=request.POST['password1'])
                     user.save()
-                    login(request, user)
-                    return redirect('tasks')
+                    return redirect('inicioAdmin')
                 except:
                     return render(request, 'signup.html', {
                         'form': UserCreationForm,
-                        "error": 'Username already exists'
+                        "error": 'El usuario ya existe.'
                     })
             return render(request, 'signup.html', {
                 'form': UserCreationForm,
-                "error": 'Password do not match'
+                "error": 'La contraseña no coincide'
             })
         else:
             # Si el usuario no es Admin, mostrar una página de acceso denegado
@@ -133,7 +138,7 @@ def signin(request):
             if user.username == 'Admin':
                 # El usuario es un administrador, redirigir a la vista de registro de usuarios
                 login(request, user)
-                return redirect('signup')
+                return redirect('inicioAdmin')
             else:
                 # El usuario no es un administrador, redirigir a la vista de tareas pendientes
                 login(request, user)
@@ -144,3 +149,9 @@ def signin(request):
                 'form': AuthenticationForm(),
                 'error': '¡Error: Usuario o contraseña incorrectos!'
             })
+
+# Mostrar las actividades completadas de un usuario
+@login_required
+def userTasks(request):
+    tasks = Task.objects.filter(datecompleted__isnull=False).order_by('-datecompleted')
+    return render(request, 'inicioAdmin.html', {'tasks': tasks})
