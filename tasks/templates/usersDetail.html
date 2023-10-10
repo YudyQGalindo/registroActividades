@@ -6,9 +6,11 @@
 
 <ul>
     {% for user in users %}
-    <a href="{% url 'updateUser' %}">
+    <a href="{% url 'updateUser' user.id %}">
         <li>
-            <p>Nombre: {{user.username}}</p>
+            <p>Usuario: {{user.username}}</p>
+            <p>Nombre: {{user.first_name}}</p>
+            <p>Apellido: {{user.last_name}}</p>
 
         </li>
     </a>

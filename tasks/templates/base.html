@@ -17,6 +17,22 @@
             </li>
             {% if user.is_authenticated %}
 
+            {% if user.username == 'Admin' %}
+            <li>
+                <a href="{% url 'inicioAdmin' %}">Inicio</a>
+            </li>
+            <li>
+                <a href="{% url 'signup' %}">Registrar Usuario</a>
+            </li>
+            <li>
+                <a href="{% url 'usersDetail' %}">Usuarios Registrados</a>
+            </li>
+            <li>
+                <a href="{% url 'logout' %}">Cerrar sesión</a>
+            </li>
+
+            {% else %}
+
             <li>
                 <a href="{% url 'tasks' %}">Actividades Pendientes</a>
             </li>
@@ -30,6 +46,8 @@
             <li>
                 <a href="{% url 'logout' %}">Cerrar sesión</a>
             </li>
+
+            {% endif %}
 
             {% else %}
             <li>
