@@ -7,15 +7,12 @@
 <ul>
     {% for task in tasks %}
     <li>
-        <a href="{% url 'userTasks' task.id %}">
-            <h2>Actividad: {{task.title}}</h2>
-            <p>Descripción: {{task.description}}</p>
-            <p>Realizada por: {{task.user.username}}</p>
-            <p>Fecha Inicio: {{ task.created|date }}</p>
-            {% if task.datecompleted %}
-            <p>Fecha finalización: {{ task.datecompleted|date }}</p>
-            {% endif %}
-        </a>
+        <h2>Actividad: {{task.title}}</h2>
+        <p>Descripción: {{task.description}}</p>
+        <p>Realizada por: {{task.user.username}}</p>
+        <p>Fecha Inicio: {{ task.created|date }}</p>
+        <p>Fecha finalización: {{ task.datecompleted|date }}</p>
+
     </li>
     {% endfor %}
 </ul>

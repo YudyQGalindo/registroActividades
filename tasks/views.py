@@ -7,18 +7,25 @@ from .forms import createTaskForm
 from .models import Task
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-# Create your views here.
 
 # Mostrar la página principal
+
+
 def home(request):
     return render(request, 'home.html')
 
-# Mortrar la página principal del Admin
+# Mostrar la página principal Admin
+
+
 @login_required
 def inicioAdmin(request):
-    return render(request, 'inicioAdmin.html')
+    tasks = Task.objects.filter(
+        datecompleted__isnull=False).order_by('-datecompleted')
+    return render(request, 'inicioAdmin.html', {'tasks': tasks})
 
 # Registrar un nuevo usuario
+
+
 @login_required
 def signup(request):
     if request.method == 'GET':
@@ -49,12 +56,16 @@ def signup(request):
             return HttpResponseForbidden("Acceso denegado")
 
 # Mostrar las actividades pendientes de un usuario
+
+
 @login_required
 def tasks(request):
     tasks = Task.objects.filter(user=request.user, datecompleted__isnull=True)
     return render(request, 'tasks.html', {'tasks': tasks})
 
 # Mostrar las actividades completadas de un usuario
+
+
 @login_required
 def tasks_completed(request):
     tasks = Task.objects.filter(
@@ -62,6 +73,8 @@ def tasks_completed(request):
     return render(request, 'tasks.html', {'tasks': tasks})
 
 # Crear una nueva actividad
+
+
 @login_required
 def create_task(request):
     if request.method == 'GET':
@@ -82,6 +95,8 @@ def create_task(request):
             })
 
 # Actualizar las actividades pendientes de un usuario
+
+
 @login_required
 def task_detail(request, task_id):
     if request.method == 'GET':
@@ -103,6 +118,8 @@ def task_detail(request, task_id):
             })
 
 # Marcar una actividad como completada
+
+
 @login_required
 def complete_task(request, task_id):
     task = get_object_or_404(Task, pk=task_id, user=request.user)
@@ -112,6 +129,8 @@ def complete_task(request, task_id):
         return redirect('tasks')
 
 # Eliminar una actividad
+
+
 @login_required
 def delete_task(request, task_id):
     task = get_object_or_404(Task, pk=task_id, user=request.user)
@@ -120,6 +139,8 @@ def delete_task(request, task_id):
         return redirect('tasks')
 
 # Cerrar sesión
+
+
 @login_required
 def signout(request):
     logout(request)
@@ -150,8 +171,15 @@ def signin(request):
                 'error': '¡Error: Usuario o contraseña incorrectos!'
             })
 
-# Mostrar las actividades completadas de un usuario
+
 @login_required
-def userTasks(request):
-    tasks = Task.objects.filter(datecompleted__isnull=False).order_by('-datecompleted')
-    return render(request, 'inicioAdmin.html', {'tasks': tasks})
+# Mostrar usuarios registrados panel Admin
+def usersDetail(request):
+    users = User.objects.all()
+    return render(request, 'usersDetail.html', {'users': users})
+
+
+@login_required
+# Actualizar los datos del usuario panel Admin
+def updateUser(request):
+    return render(request, 'updateUser.html')

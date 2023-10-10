@@ -4,9 +4,10 @@ from tasks import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('inicioAdmin/', views.inicioAdmin, name='inicioAdmin'),
-    path('userTasks/', views.userTasks, name='userTasks'),
     path('', views.home, name='home'),
+    path('inicioAdmin/', views.inicioAdmin, name='inicioAdmin'),
+    path('usersDetail/', views.usersDetail, name='usersDetail'),
+    path('updateUser/', views.updateUser, name='updateUser'),
     path('signup/', views.signup, name='signup'),
     path('tasks/', views.tasks, name='tasks'),
     path('tasks_completed/', views.tasks_completed, name='tasks_completed'),
