@@ -16,4 +16,11 @@
     </button>
 </form>
 
+<form action="{% url 'deleteUser' user.id %}" method="POST">
+    {% csrf_token %}
+    <button>
+        Eliminar
+    </button>
+</form>
+
 {% endblock %}

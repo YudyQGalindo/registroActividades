@@ -8,6 +8,7 @@ urlpatterns = [
     path('inicioAdmin/', views.inicioAdmin, name='inicioAdmin'),
     path('usersDetail/', views.usersDetail, name='usersDetail'),
     path('usersDetail/<user_id>/', views.updateUser, name='updateUser'),
+    path('usersDetail/<int:user_id>/delete/', views.deleteUser, name='deleteUser'),
     path('signup/', views.signup, name='signup'),
     path('tasks/', views.tasks, name='tasks'),
     path('tasks_completed/', views.tasks_completed, name='tasks_completed'),

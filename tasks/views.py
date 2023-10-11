@@ -177,3 +177,11 @@ def updateUser(request, user_id):
                 'user': user, 'form': form,
                 'error': "Error: al actualizar los datos, intente de nuevo."
             })
+
+# Eliminar los datos de usuario
+@login_required
+def deleteUser(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    if request.method == 'POST':
+        user.delete()
+        return redirect('usersDetail')

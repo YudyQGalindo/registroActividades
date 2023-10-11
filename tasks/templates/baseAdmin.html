@@ -16,7 +16,7 @@
 
             {% if user.username == 'Admin' %}
             <li>
-                <a href="{% url 'inicioAdmin' %}">Inicio</a>
+                <a href="{% url 'inicioAdmin' %}">Actividades Registradas</a>
             </li>
             <li>
                 <a href="{% url 'signup' %}">Registrar Usuario</a>
@@ -30,6 +30,9 @@
             {% endif %}
 
             {% else %}
+            <li>
+                <a href="/">Inicio</a>
+            </li>
             <li>
                 <a href="{% url 'signin' %}">Iniciar Sesión</a>
             </li>
