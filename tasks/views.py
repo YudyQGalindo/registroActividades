@@ -141,7 +141,7 @@ def signup(request):
                 except:
                     return render(request, 'signup.html', {
                         'form': CustomUserCreationForm,
-                        "error": 'El usuario ya existe.'
+                        "error": 'Ingrese datos válidos.'
                     })
             return render(request, 'signup.html', {
                 'form': CustomUserCreationForm,

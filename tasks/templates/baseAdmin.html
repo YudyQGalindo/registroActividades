@@ -10,39 +10,57 @@
 
 <body>
 
-    <nav>
-        <ul>
-            {% if user.is_authenticated %}
+    <header>
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">Alcaldía de Chiquinquirá</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
 
-            {% if user.username == 'Admin' %}
-            <li>
-                <a href="{% url 'inicioAdmin' %}">Actividades Registradas</a>
-            </li>
-            <li>
-                <a href="{% url 'signup' %}">Registrar Usuario</a>
-            </li>
-            <li>
-                <a href="{% url 'usersDetail' %}">Usuarios Registrados</a>
-            </li>
-            <li>
-                <a href="{% url 'logout' %}">Cerrar sesión</a>
-            </li>
-            {% endif %}
+                        {% if user.username == 'Admin' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'inicioAdmin' %}">Actividades Registradas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'signup' %}">Registrar Usuario</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'usersDetail' %}">Usuarios Registrados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
+                        </li>
 
-            {% else %}
-            <li>
-                <a href="/">Inicio</a>
-            </li>
-            <li>
-                <a href="{% url 'signin' %}">Iniciar Sesión</a>
-            </li>
-            {% endif %}
+                        {% endif %}
 
-        </ul>
-    </nav>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'signin' %}">Iniciar Sesión</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     {% block content %}
     {% endblock %}
+
+    <div class="card bg-dark text-center text-white mt-5">
+        <footer class="card-body">
+            <h5 class="card-title">Alcaldía de Chiquinquirá</h5>
+            <p class="card-text">Asesorado, diseñado y desarrollado por: Yudy Quintero © Copyright 2023</p>
+        </footer>
+    </div>
 
 </body>
 
