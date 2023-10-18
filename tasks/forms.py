@@ -18,3 +18,8 @@ class UserUpdateForm(UserChangeForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name']
+        widget = {
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'})
+        }

@@ -10,7 +10,7 @@
 
             {{error}}
 
-            <form method="POST">
+            <form method="POST" class="mt-2">
                 {% csrf_token %}
                 {{form.as_p}}
                 <button class="btn btn-primary">
@@ -18,19 +18,21 @@
                 </button>
             </form>
 
-            <form action="{% url 'complete_task' task.id %}" method="POST">
-                {% csrf_token %}
-                <button class="btn btn-success">
-                    Completar Actividad
-                </button>
-            </form>
+            <div class="mt-2 d-flex">
+                <form action="{% url 'complete_task' task.id %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-success">
+                        Completar Actividad
+                    </button>
+                </form>
 
-            <form action="{% url 'delete_task' task.id %}" method="POST">
-                {% csrf_token %}
-                <button class="btn btn-danger">
-                    Eliminar Actividad
-                </button>
-            </form>
+                <form action="{% url 'delete_task' task.id %}" method="POST" class="px-2">
+                    {% csrf_token %}
+                    <button class="btn btn-danger">
+                        Eliminar Actividad
+                    </button>
+                </form>
+            </div>
 
         </div>
     </div>

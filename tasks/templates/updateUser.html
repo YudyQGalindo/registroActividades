@@ -2,25 +2,31 @@
 
 {% block content %}
 
-<h1>Actualizar Usuario</h1>
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 mt-5">
+            <div class="card card-body">
+                <h1 class="text-center text-primary">Actualizar Usuario</h1>
 
-<h2>{{user.username}}</h2>
+                {{error}}
 
-{{error}}
+                <form method="POST" class="mt-2">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button class="btn btn-primary">
+                        Actualizar
+                    </button>
+                </form>
 
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button>
-        Actualizar
-    </button>
-</form>
-
-<form action="{% url 'deleteUser' user.id %}" method="POST">
-    {% csrf_token %}
-    <button>
-        Eliminar
-    </button>
-</form>
+                <form action="{% url 'deleteUser' user.id %}" method="POST" class="mt-2">
+                    {% csrf_token %}
+                    <button class="btn btn-danger">
+                        Eliminar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
 
 {% endblock %}

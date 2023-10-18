@@ -2,19 +2,25 @@
 
 {% block content %}
 
-<h1>Usuarios Registrados</h1>
+<main class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="display-4 text-center py-5">Usuarios Registrados</h1>
 
-<ul>
-    {% for user in users %}
-    <a href="{% url 'updateUser' user.id %}">
-        <li>
-            <p>Usuario: {{user.username}}</p>
-            <p>Nombre: {{user.first_name}}</p>
-            <p>Apellido: {{user.last_name}}</p>
+            <ul class="list-group">
+                {% for user in users %}
+                <li class="list-group-item">
+                    <a class="link-dark link-underline-opacity-0" href="{% url 'updateUser' user.id %}">
+                        <p class="fw-bold display-6 text-primary">{{user.username}}</p>
+                        <p>Nombre: {{user.first_name}}</p>
+                        <p>Apellido: {{user.last_name}}</p>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
 
-        </li>
-    </a>
-    {% endfor %}
-</ul>
+        </div>
+    </div>
+</main>
 
 {% endblock %}
